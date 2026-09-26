@@ -24,12 +24,12 @@ final class AppModel {
 
 	var isWorking: Bool { state.isWorking }
 
-	func start() async {
+	func start(using makeEngine: () throws -> Engine = Engine.current) async {
 		guard engine == nil else {
 			return
 		}
 		do {
-			engine = try Engine.current()
+			engine = try makeEngine()
 		} catch {
 			state.message = Footnote(text: InstallerError(describing: error).summary, tone: .error)
 			return
