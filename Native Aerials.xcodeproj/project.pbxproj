@@ -6,20 +6,54 @@
 	objectVersion = 110;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		A718FD9630633AC000E267CC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A718FD7530633AB000E267CC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A718FD7C30633AB100E267CC;
+			remoteInfo = "Native Aerials";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		A718FD7D30633AB100E267CC /* Native Aerials.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Native Aerials.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A718FD9230633AC000E267CC /* Native Aerials Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Native Aerials Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		A718FD9830633AC000E267CC /* Exceptions for "Native Aerials" folder in "Native Aerials Tests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				App/NativeAerialsApp.swift,
+			);
+			target = A718FD9130633AC000E267CC /* Native Aerials Tests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		A718FD7F30633AB100E267CC /* Native Aerials */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A718FD9830633AC000E267CC /* Exceptions for "Native Aerials" folder in "Native Aerials Tests" target */,
+			);
 			path = "Native Aerials";
+			sourceTree = "<group>";
+		};
+		A718FD9030633AC000E267CC /* Tests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		A718FD7A30633AB100E267CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		A718FD9430633AC000E267CC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
 			);
@@ -31,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				A718FD7F30633AB100E267CC /* Native Aerials */,
+				A718FD9030633AC000E267CC /* Tests */,
 				A718FD7E30633AB100E267CC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -39,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				A718FD7D30633AB100E267CC /* Native Aerials.app */,
+				A718FD9230633AC000E267CC /* Native Aerials Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -64,6 +100,28 @@
 			productReference = A718FD7D30633AB100E267CC /* Native Aerials.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A718FD9130633AC000E267CC /* Native Aerials Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A718FD9930633AC000E267CC /* Build configuration list for PBXNativeTarget "Native Aerials Tests" */;
+			buildPhases = (
+				A718FD9330633AC000E267CC /* Sources */,
+				A718FD9430633AC000E267CC /* Frameworks */,
+				A718FD9530633AC000E267CC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A718FD9730633AC000E267CC /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A718FD9030633AC000E267CC /* Tests */,
+				A718FD7F30633AB100E267CC /* Native Aerials */,
+			);
+			name = "Native Aerials Tests";
+			productName = "Native Aerials Tests";
+			productReference = A718FD9230633AC000E267CC /* Native Aerials Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -75,6 +133,9 @@
 				LastUpgradeCheck = 2700;
 				TargetAttributes = {
 					A718FD7C30633AB100E267CC = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					A718FD9130633AC000E267CC = {
 						CreatedOnToolsVersion = 27.0;
 					};
 				};
@@ -94,12 +155,18 @@
 			projectRoot = "";
 			targets = (
 				A718FD7C30633AB100E267CC /* Native Aerials */,
+				A718FD9130633AC000E267CC /* Native Aerials Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		A718FD7B30633AB100E267CC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		A718FD9530633AC000E267CC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
 			);
@@ -112,7 +179,20 @@
 			files = (
 			);
 		};
+		A718FD9330633AC000E267CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A718FD9730633AC000E267CC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A718FD7C30633AB100E267CC /* Native Aerials */;
+			targetProxy = A718FD9630633AC000E267CC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A718FD8630633AB900E267CC /* Debug configuration for PBXProject "Native Aerials" */ = {
@@ -318,6 +398,38 @@
 			};
 			name = Release;
 		};
+		A718FD9A30633AC000E267CC /* Debug configuration for PBXNativeTarget "Native Aerials Tests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.hloth.native-aerials.tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A718FD9B30633AC000E267CC /* Release configuration for PBXNativeTarget "Native Aerials Tests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.hloth.native-aerials.tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -334,6 +446,14 @@
 			buildConfigurations = (
 				A718FD8930633AB900E267CC /* Debug configuration for PBXNativeTarget "Native Aerials" */,
 				A718FD8A30633AB900E267CC /* Release configuration for PBXNativeTarget "Native Aerials" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		A718FD9930633AC000E267CC /* Build configuration list for PBXNativeTarget "Native Aerials Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A718FD9A30633AC000E267CC /* Debug configuration for PBXNativeTarget "Native Aerials Tests" */,
+				A718FD9B30633AC000E267CC /* Release configuration for PBXNativeTarget "Native Aerials Tests" */,
 			);
 			defaultConfigurationName = Release;
 		};
