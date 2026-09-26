@@ -22,7 +22,9 @@ extension AppModel {
 			case .failure(let error):
 				self.state.flash(error.missingAssetIDs)
 				self.state.message = PanelState.message(for: error)
-				if !error.missingAssetIDs.isEmpty {
+				if let tile = self.state.firstMissingTile(closestToComplete: error.missingAssetIDs) {
+					self.hintDownload(of: tile, saying: error.summary)
+				} else if !error.missingAssetIDs.isEmpty {
 					AccessibilityNotification.Announcement(error.summary).post()
 				}
 				let remaining = Self.minimumSwitchTime - Date.now.timeIntervalSince(started)
@@ -45,8 +47,7 @@ extension AppModel {
 			select(.video(tile.id))
 		case .missing:
 			state.flash([tile.id])
-			open(.wallpaper)
-			hintDownload(of: tile)
+			hintDownload(of: tile, saying: "Download “\(tile.name)” first")
 		case .downloading:
 			open(.wallpaper)
 		case .loading:
@@ -114,8 +115,8 @@ extension AppModel {
 		}
 	}
 
-	private func hintDownload(of tile: TileItem) {
-		let text = "Download “\(tile.name)” first"
+	private func hintDownload(of tile: TileItem, saying text: String) {
+		open(.wallpaper)
 		if let dryRun = engine?.locations.dryRun {
 			dryRun.record("hint \(text)")
 			return

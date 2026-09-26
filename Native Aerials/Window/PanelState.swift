@@ -86,6 +86,11 @@ nonisolated struct PanelState: Equatable, Sendable {
 
 	var onDiskAssetIDs: Set<String> { snapshot?.onDiskAssetIDs ?? [] }
 
+	func firstMissingTile(closestToComplete missingAssetIDs: [String]) -> TileItem? {
+		let missing = Set(missingAssetIDs)
+		return rows.map { $0.tiles.filter { missing.contains($0.id) } }.filter { !$0.isEmpty }.min { $0.count < $1.count }?.first
+	}
+
 	func displaysMerged(_ set: SetSnapshot) -> Bool {
 		switch switchIntent {
 		case true?: set.isMerged || set.readiness == .ready
