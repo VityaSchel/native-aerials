@@ -7,6 +7,10 @@ nonisolated struct EnableOutcome: Sendable {
 
 nonisolated extension Installer {
 	func enable(opensSettings: Bool = true) throws -> EnableOutcome {
+		guard !needsMoveToApplications else {
+			let folders = locations.applicationFolders?.joined(separator: " or ") ?? "the Applications folder"
+			throw InstallerError("Native Aerials runs from \(executablePath); it turns on only from \(folders), so move it there and open it again. Nothing was changed.", summary: Self.moveNotice)
+		}
 		try preflight()
 		try checkOverrideIsOurs()
 		try ensureNoDownloadInFlight()
