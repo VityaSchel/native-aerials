@@ -5,6 +5,7 @@ export PATH=/usr/bin:/bin:/usr/sbin:/sbin
 readonly xcode_build=27A266a
 readonly team_id=L3W5ZXTBAF
 readonly notary_profile=native-aerials
+readonly repository_url=https://git.hloth.dev/hloth/native-aerials
 readonly root=/private/tmp/native-aerials-release
 readonly repo=$(git -C "$(dirname "${BASH_SOURCE[0]}")" rev-parse --show-toplevel)
 readonly developer_dir=${DEVELOPER_DIR:-/Applications/Xcode.app/Contents/Developer}
@@ -77,7 +78,7 @@ identity() {
 }
 if [ -z "$rebuild" ]; then
 	leaks=$({ cat "$zip"; find "$app" -type f -exec cat {} +; find "$root/src" -type f -path '*.icon/*' -exec cat {} +; } |
-		bundle=$(plist CFBundleIdentifier) perl -0777 -pe 's/\Q$ENV{bundle}\E//g' |
+		bundle=$(plist CFBundleIdentifier) repository=$repository_url perl -0777 -pe 's/\Q$ENV{bundle}\E|\Q$ENV{repository}\E//g' |
 		LC_ALL=C grep -a -o -i -F -f <(identity 2>/dev/null | grep -v '^$') | sort -u | paste -s -d , -) || true
 	if [ -n "$leaks" ]; then
 		rm "$zip"

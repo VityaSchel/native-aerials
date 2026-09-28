@@ -58,7 +58,7 @@ The scan runs before signing, because a Developer ID signature necessarily carri
 - Git name, email or signing key
 - hardware UUID or serial number
 
-The bundle identifier is the only place the user name may appear. The scan reads the `.icon` sources because `actool` compresses them into `Assets.car`, where SVG metadata such as an export path or creator name would otherwise go unnoticed.
+The bundle identifier and the repository URL `https://git.hloth.dev/hloth/native-aerials`, which the About window links to, are the only places the user name may appear. The scan reads the `.icon` sources because `actool` compresses them into `Assets.car`, where SVG metadata such as an export path or creator name would otherwise go unnoticed.
 
 The archive in the build root holds the matching dSYM for symbolicating crash reports. The next `release.sh` or `verify.sh` run deletes it along with `out/`, so copy both somewhere else first.
 
