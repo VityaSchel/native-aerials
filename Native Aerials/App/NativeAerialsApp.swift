@@ -23,7 +23,7 @@ struct NativeAerialsApp: App {
 		.windowResizability(.contentSize)
 		.windowBackgroundDragBehavior(.enabled)
 		.restorationBehavior(.disabled)
-		.defaultLaunchBehavior(.presented)
+		.defaultLaunchBehavior(AppMover.destination == nil ? .presented : .suppressed)
 		.commands {
 			StandardMenus()
 		}
@@ -37,6 +37,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		if SingleInstance.handOffToOlderCopy() {
 			exit(0)
 		}
+	}
+
+	func applicationDidFinishLaunching(_ notification: Notification) {
+		AppMover.offerMoveToApplications()
 	}
 
 	func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {

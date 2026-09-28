@@ -72,15 +72,18 @@ nonisolated struct AppLocator {
 		}
 	}
 
-	static func executable(of app: URL) -> URL? {
+	static func info(of app: URL) -> [String: Any]? {
 		guard let data = try? Data(contentsOf: app.appending(path: "Contents/Info.plist")),
 			let info = try? PropertyListSerialization.propertyList(from: data, format: nil) as? [String: Any],
-			info["CFBundleIdentifier"] as? String == AgentJob.bundleIdentifier,
-			let name = info["CFBundleExecutable"] as? String
+			info["CFBundleIdentifier"] as? String == AgentJob.bundleIdentifier
 		else {
 			return nil
 		}
-		return app.appending(path: "Contents/MacOS/\(name)")
+		return info
+	}
+
+	static func executable(of app: URL) -> URL? {
+		(info(of: app)?["CFBundleExecutable"] as? String).map { app.appending(path: "Contents/MacOS/\($0)") }
 	}
 
 	private func search(_ record: AgentRecord) -> AppPresence {
