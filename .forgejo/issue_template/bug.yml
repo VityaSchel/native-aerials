@@ -1,0 +1,28 @@
+name: Bug Report
+about: Report a bug in Native Aerials
+title: ""
+ref: "main"
+labels:
+  - bug
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: Description
+      placeholder: Include step-by-step instructions to reproduce the bug, and a description of what you expected to happen instead.
+      value: ""
+    validations:
+      required: true
+  - type: textarea
+    id: status
+    attributes:
+      label: Diagnostic information
+      description: Run `sw_vers; "/Applications/Native Aerials.app/Contents/MacOS/Native Aerials" status` in terminal and paste its result
+      render: shell
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Run `log stream --level info --predicate 'subsystem == "dev.hloth.native-aerials"'` in terminal, reproduce the problem, then copy the logs from terminal
+      render: shell
+ 
