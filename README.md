@@ -2,9 +2,9 @@
 
 **Merge macOS video wallpapers into a single dynamic automatic video aerial.**
 
-<video src="./docs/demo.mp4" autoplay muted loop controls></video>
+[![Demo](./docs/demo.avif)](./docs/demo.mp4)
 
-<a href="https://git.hloth.dev/hloth/native-aerials/releases"><img src="./docs/download-for-the-macos-27-button.svg" width="175" height="56" /></a>
+<a href="https://git.hloth.dev/hloth/native-aerials/releases/download/v1.0.0/native-aerials-v1.0.0-macos.zip"><img src="./docs/download-for-the-macos-27-button.svg" width="175" height="56" /></a>
 
 Download, drag to Applications, launch. To uninstall, drag to Trash.
 
