@@ -1,25 +1,25 @@
 # Native Aerials
 
-**Merge macOS video wallpapers into a single dynamic automatic video aerial.** 1.5 MB native signed & notarized macOS app — zero terminal commands, install or setup instructions.
+**Merge macOS video wallpapers into a single dynamic automatic video aerial.**
 
-<!-- insert video demo here -->
+<video src="./docs/demo.mp4" autoplay muted loop controls></video>
 
 <a href="https://git.hloth.dev/hloth/native-aerials/releases"><img src="./docs/download-for-the-macos-27-button.svg" width="175" height="56" /></a>
 
-Drag Native Aerials to Applications. To uninstall, drag to Trash.
+Download, drag to Applications, launch. To uninstall, drag to Trash.
 
-*P.S. keep it enabled in Login Items & Extensions to keep your wallpapers in sync*
-
-## How it works
+<details>
+<summary>How it works under the hood</summary>
 
 - A patched copy of Apple's aerial catalog in `~/Library/Application Support/com.apple.wallpaper/aerials/custom/` that adds only the sun data for the combined sets
 - `AerialManifestLocalPathOverride` and `AerialManifestForceLocal` in the `com.apple.wallpaper.aerial` preferences, which point the wallpaper at that copy
 - Your saved wallpaper choice, followed by a restart of the wallpaper processes
 - `~/Library/LaunchAgents/dev.hloth.native-aerials.agent.plist`, which runs a copy of the app from `~/Library/Application Support/Native Aerials/` whenever the app, the videos or Apple's catalog change
 
-## Command line
+</details>
 
-To use the app as CLI (advanced):
+<details>
+<summary>Command line usage (advanced)</summary>
 
 ```sh
 "/Applications/Native Aerials.app/Contents/MacOS/Native Aerials" --help
@@ -41,7 +41,10 @@ To use the app as CLI (advanced):
 #   status     report what is installed, including every set ID and asset ID, read-only
 ```
 
-## Build
+</details>
+
+<details>
+<summary>Build from source code (advanced)</summary>
 
 You need Xcode 27 on macOS 27. The tests run in dry-run sandboxes and don't touch your settings:
 
@@ -49,10 +52,10 @@ You need Xcode 27 on macOS 27. The tests run in dry-run sandboxes and don't touc
 xcodebuild -project "Native Aerials.xcodeproj" -scheme "Native Aerials" -destination platform=macOS -derivedDataPath /tmp/native-aerials-build test
 ```
 
-Releases are reproducible; see [REPRODUCIBILITY.md](REPRODUCIBILITY.md).
+Releases are reproducible, signed & notarized; see [REPRODUCIBILITY.md](REPRODUCIBILITY.md).
+
+</details>
 
 ## License
 
 [MIT](./LICENSE)
-
-Not affiliated with Apple.
