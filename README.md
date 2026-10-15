@@ -2,7 +2,7 @@
 
 **Merge macOS video wallpapers into a single dynamic automatic video aerial.**
 
-[![Demo](./docs/demo.avif)](./docs/demo.mp4)
+[<img src="./docs/demo.avif" loading="lazy" width="756" height="395" />](./docs/demo.mp4)
 
 <a href="https://git.hloth.dev/hloth/native-aerials/releases/download/v1.0.0/native-aerials-v1.0.0-macos.zip"><img src="./docs/download-for-the-macos-27-button.svg" width="175" height="56" /></a>
 
