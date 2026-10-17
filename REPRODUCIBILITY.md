@@ -85,11 +85,11 @@ Before the first signed release, set up the Mac that builds it once:
 
 ```bash
 # 1. Check out the release's tag and its signature
-git checkout v1.0.0
-git verify-tag v1.0.0
+git checkout v1.0.1
+git verify-tag v1.0.1
 
 # 2. Fetch the zip from https://git.hloth.dev/hloth/native-aerials/releases, then rebuild and compare
-scripts/verify.sh /path/to/native-aerials-v1.0.0-macos.zip
+scripts/verify.sh /path/to/native-aerials-v1.0.1-macos.zip
 ```
 
 `verify.sh` rebuilds the checked-out commit, or the one given as a second argument, skipping the tests, the scan, signing and notarizing. If the zips are identical, it stops there. They never are: the rebuild has no Developer ID signature or ticket, and `Assets.car` differs on every build anyway (see [Known limits](#known-limits)). Otherwise it unpacks both and:
