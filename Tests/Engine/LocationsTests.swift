@@ -68,12 +68,12 @@ nonisolated struct LocationsTests {
 
 	@Test func honorsTestOverridesOnlyInDryRun() throws {
 		let sandbox = try Sandbox()
-		let overrides = ["NATIVE_AERIALS_BUNDLED": "/x/bundled.json", "NATIVE_AERIALS_MANIFEST": "/x/manifest.json", "NATIVE_AERIALS_VIDEOS": "/x/videos", "NATIVE_AERIALS_SPACES": "A,B", "NATIVE_AERIALS_APPLICATIONS": "/x/Apps:/x/More"]
+		let overrides = ["NATIVE_AERIALS_BUNDLED": "/x/bundled.json", "NATIVE_AERIALS_MANIFEST": "/x/manifest.json", "NATIVE_AERIALS_VIDEOS": "/x/videos", "NATIVE_AERIALS_DEFAULT_VIDEO": "/x/default.mov", "NATIVE_AERIALS_SPACES": "A,B", "NATIVE_AERIALS_APPLICATIONS": "/x/Apps:/x/More"]
 		let real = Locations(dryRun: nil, environment: overrides)
-		#expect(![real.bundledCatalog, real.downloadedCatalog, real.videosDirectory].contains { $0.path.hasPrefix("/x/") })
+		#expect(![real.bundledCatalog, real.downloadedCatalog, real.videosDirectory, real.defaultVideo].contains { $0.path.hasPrefix("/x/") })
 		#expect(real.environment.isEmpty && real.applicationFolders == SystemInfo.applicationFolders(home: real.home))
 		let dry = Locations(dryRun: sandbox.dryRun, environment: overrides)
-		#expect(dry.bundledCatalog.path == "/x/bundled.json" && dry.downloadedCatalog.path == "/x/manifest.json" && dry.videosDirectory.path == "/x/videos")
+		#expect(dry.bundledCatalog.path == "/x/bundled.json" && dry.downloadedCatalog.path == "/x/manifest.json" && dry.videosDirectory.path == "/x/videos" && dry.defaultVideo.path == "/x/default.mov")
 		#expect(dry.applicationFolders == ["/x/Apps", "/x/More"] && sandbox.paths.applicationFolders == nil)
 		#expect(dry.desktopSpaceIDs == ["A", "B"])
 		#expect(Locations(dryRun: sandbox.dryRun, environment: ["NATIVE_AERIALS_SPACES": ""]).desktopSpaceIDs == nil)

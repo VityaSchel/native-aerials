@@ -56,6 +56,7 @@ nonisolated struct Locations: Sendable {
 	let bundledCatalog: URL
 	let downloadedCatalog: URL
 	let videosDirectory: URL
+	let defaultVideo: URL
 	let applicationFolders: [String]?
 	let environment: [String: String]
 
@@ -76,6 +77,7 @@ nonisolated struct Locations: Sendable {
 			?? realRoot.appending(path: "aerials/manifest/entries.json")
 		videosDirectory = fixture("NATIVE_AERIALS_VIDEOS").map { URL(filePath: SystemInfo.resolvedPath($0) ?? $0, directoryHint: .isDirectory) }
 			?? realRoot.appending(path: "aerials/videos", directoryHint: .isDirectory)
+		defaultVideo = fixture("NATIVE_AERIALS_DEFAULT_VIDEO").map { URL(filePath: $0) } ?? AerialSet.systemDefaultVideo
 		applicationFolders = dryRun == nil
 			? SystemInfo.applicationFolders(home: home)
 			: fixture("NATIVE_AERIALS_APPLICATIONS").map { $0.split(separator: ":").map(String.init) }
@@ -136,8 +138,12 @@ nonisolated struct Locations: Sendable {
 	}
 
 	func isDownloaded(assetID id: String) -> Bool {
+		Self.isVideo(videoFile(forAssetID: id)) || id == AerialSet.systemDefaultAssetID && Self.isVideo(defaultVideo)
+	}
+
+	private static func isVideo(_ file: URL) -> Bool {
 		var info = stat()
-		return stat(videoFile(forAssetID: id).path, &info) == 0 && (info.st_mode & S_IFMT) == S_IFREG && info.st_size > 0
+		return stat(file.path, &info) == 0 && (info.st_mode & S_IFMT) == S_IFREG && info.st_size > 0
 	}
 
 	func thumbnail(forID id: String) -> URL? {

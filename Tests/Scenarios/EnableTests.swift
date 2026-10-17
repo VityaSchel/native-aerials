@@ -49,6 +49,15 @@ nonisolated struct EnableTests {
 		#expect(variants[Self.gg.day.assetID] == .onDisk && variants[Self.gg.night.assetID] == .missing)
 	}
 
+	@Test func combinesGoldenGateWithTheBuiltInSunset() async throws {
+		let sandbox = try Sandbox(videos: [Self.gg.day, Self.gg.evening, Self.gg.night])
+		FileManager.default.createFile(atPath: sandbox.defaultVideo.path, contents: Data("x".utf8))
+		#expect(try await sandbox.run("enable").status == 0)
+		#expect(sandbox.combinedSetIDs == [Self.gg.subcategoryID] && !sandbox.exists(Self.gg.morning))
+		let variants = Dictionary(uniqueKeysWithValues: try sandbox.snapshot().sets.flatMap(\.variants).map { ($0.assetID, $0.download) })
+		#expect(variants[Self.gg.morning.assetID] == .onDisk && variants[Self.tahoe.morning.assetID] == .missing)
+	}
+
 	@Test func combinesEverySetAndInstallsTheAgent() async throws {
 		let sandbox = try Sandbox(videos: Self.allVideos)
 		let result = try await sandbox.run("enable")

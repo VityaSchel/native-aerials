@@ -25,6 +25,7 @@ nonisolated final class Sandbox {
 	private var clonedApp: URL?
 
 	var videos: URL { directory.appending(path: "videos", directoryHint: .isDirectory) }
+	var defaultVideo: URL { directory.appending(path: "default/Golden Gate.mov") }
 	var bundledCatalog: URL { directory.appending(path: "catalogs/bundled.json") }
 	var manifest: URL { directory.appending(path: "catalogs/manifest.json") }
 	var outside: URL { root.appending(path: "outside", directoryHint: .isDirectory) }
@@ -50,13 +51,14 @@ nonisolated final class Sandbox {
 			"NATIVE_AERIALS_BUNDLED": bundledCatalog.path,
 			"NATIVE_AERIALS_MANIFEST": manifest.path,
 			"NATIVE_AERIALS_VIDEOS": videos.path,
+			"NATIVE_AERIALS_DEFAULT_VIDEO": defaultVideo.path,
 			"NATIVE_AERIALS_SPACES": IndexFixture.liveSpace,
 			"NATIVE_AERIALS_REGISTERED_APPS": "",
 			"NATIVE_AERIALS_CONFIRM_DELAY": "1",
 			"NATIVE_AERIALS_LOCK_TIMEOUT": "5",
 		]
 		_ = try locations()
-		for folder in [videos, outside, bundledCatalog.deletingLastPathComponent(), paths.preferencesFile.deletingLastPathComponent(), paths.indexFile.deletingLastPathComponent()] {
+		for folder in [videos, defaultVideo.deletingLastPathComponent(), outside, bundledCatalog.deletingLastPathComponent(), paths.preferencesFile.deletingLastPathComponent(), paths.indexFile.deletingLastPathComponent()] {
 			try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
 		}
 		try PropertyListSerialization.data(fromPropertyList: [String: Any](), format: .xml, options: 0).write(to: paths.preferencesFile)
@@ -80,7 +82,7 @@ nonisolated final class Sandbox {
 		for url in writes {
 			try #require(url.path.hasPrefix(directory.path + "/"), "\(url.path) is outside the dry run")
 		}
-		for url in [locations.bundledCatalog, locations.downloadedCatalog, locations.videosDirectory] {
+		for url in [locations.bundledCatalog, locations.downloadedCatalog, locations.videosDirectory, locations.defaultVideo] {
 			try #require(url.path.hasPrefix(root.path + "/"), "\(url.path) is outside the sandbox")
 		}
 		return locations

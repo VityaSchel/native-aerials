@@ -103,6 +103,7 @@ nonisolated struct AerialSet: Sendable, Hashable {
 	]
 
 	static let systemDefaultAssetID = "4207734D-74FE-4F92-B5E1-6EC8DEE24A15"
+	static let systemDefaultVideo = URL(filePath: "/System/Library/Wallpapers/.default/Golden Gate.mov")
 	static let allIDs = Set(all.flatMap(\.assetIDs) + all.map(\.subcategoryID))
 
 	static func addingVideos(ofSetsIn ids: Set<String>) -> Set<String> {
